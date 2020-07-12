@@ -24,14 +24,15 @@ int main(){
     int data[] = {1000,-1,1,102,1,-1};
     int n = sizeof(data)/ sizeof(int);
     // 希尔排序
-    ACInsertSort<int, int>* s = new ACShellSort<int,int>();
+    ACISort<int, int>* s = new ACShellSort<int,int>();
     s->sort(data,n);
     s->print(data, n);
     // 插入排序
-    ACInsertSort<int, int>* s1 = new ACInsertSort<int,int>();
+    ACISort<int, int>* s1 = new ACInsertSort<int,int>();
     s1->sort(data,n);
     s1->print(data, n);
     delete s;
+    delete s1;
     getchar();
     return 0;
 }

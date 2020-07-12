@@ -23,7 +23,7 @@
 template<typename T, typename N>
 class ACInsertSort : public ACISort<T,N>{
 public:
-    virtual void sort(T* data, const N &n) {
+    virtual void sort(T* data, const N &n) override {
         // 步长是1的插入排序
         sort(data, n, 1);
     }
