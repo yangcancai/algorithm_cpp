@@ -3,7 +3,7 @@
                algorithm_cpp
             https://github.com/yangcancai/algorithm_cpp
    Copyright (c) 2020 algorithm_cpp. All rights reserved.
-   Created by yangcancai  on 2020/7/12.
+   Created by yangcancai  on 2020/7/14.
    algorithm_cpp is open-source software and you can redistribute it and/or modify
    it under the terms of the License; besides, anyone who use this file/software must include this copyright announcement.
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,26 +16,37 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-#ifndef ALGORITHM_CPP_ACISORT_H
-#define ALGORITHM_CPP_ACISORT_H
-
+#ifndef ALGORITHM_CPP_ACQUICKSORT_H
+#define ALGORITHM_CPP_ACQUICKSORT_H
+#include "ACISort.h"
+// 快速排序
 template<typename T, typename N>
-class ACISort {
+class ACQuickSort : public ACISort<T,N> {
 public:
-    virtual void sort(T* data, const N &n) = 0 ;
-    virtual void print(T* data, const N &n) {
-        for (N i = 0; i < n; ++i) {
-            std::cout << data[i] << ",";
+    void sort(T* data, const N &n) override {
+        if (n == 0 || n == 1) return;
+        N i = 0;
+        N j = n - 1;
+        bool is_right = true;
+        while(i != j){
+            if (is_right) {
+                if (data[j] < data[i]) {
+                    swap(data[j], data[i]);
+                    is_right = false;
+                }
+                j--;
+            }else{
+                if (data[i] > data[j]) {
+                    swap(data[j], data[i]);
+                    is_right = true;
+                }
+                i++;
+            }
         }
-        std::cout << std::endl;
-    };
-    virtual void swap(T &a, T &b){
-       T temp;
-       temp = a;
-       a = b;
-       b = temp;
+        sort(data, i);
+        sort(data + i + 1, n - i - 1);
     }
 };
 
 
-#endif //ALGORITHM_CPP_ACISORT_H
+#endif //ALGORITHM_CPP_ACQUICKSORT_H

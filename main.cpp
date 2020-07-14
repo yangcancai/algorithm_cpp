@@ -19,20 +19,35 @@
 #include <iostream>
 #include "sort/ACISort.h"
 #include "sort/ACShellSort.h"
-#include "sort/ACInsertSort.h"
+#include "sort/ACQuickSort.h"
+void do_task(ACISort<int,int> *s){
+    int data[] = {1000,-1,1,102,1,-1,7};
+    int data1[] = {1,2,3,4,5,6,7,8};
+    int data2[] = {8,7,6,5,4,3,2,1,0};
+    s->sort(data,sizeof(data)/sizeof(int));
+    s->print(data,sizeof(data)/sizeof(int));
+    s->sort(data1, sizeof(data1)/sizeof(int));
+    s->print(data1,sizeof(data1)/sizeof(int));
+    s->sort(data2, sizeof(data2)/sizeof(int));
+    s->print(data2,sizeof(data2)/sizeof(int));
+}
 int main(){
-    int data[] = {1000,-1,1,102,1,-1};
-    int n = sizeof(data)/ sizeof(int);
+    std::cout << "test sort..." << std::endl;
     // 希尔排序
     ACISort<int, int>* s = new ACShellSort<int,int>();
-    s->sort(data,n);
-    s->print(data, n);
+    std::cout << "shellinsert short: " << std::endl;
+    do_task(s);
     // 插入排序
     ACISort<int, int>* s1 = new ACInsertSort<int,int>();
-    s1->sort(data,n);
-    s1->print(data, n);
+    std::cout << "insert short: " << std::endl;
+    do_task(s1);
+    // 快速排序
+    ACISort<int, int>* s2 = new ACQuickSort<int,int>();
+    std::cout << "quick short: " << std::endl;
+    do_task(s2);
     delete s;
     delete s1;
+    delete s2;
     getchar();
     return 0;
 }
