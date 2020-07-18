@@ -27,24 +27,27 @@ public:
         if (n == 0 || n == 1) return;
         N i = 0;
         N j = n - 1;
+        N t = i;
         bool is_right = true;
-        while(i != j){
+        while(i <= j){
             if (is_right) {
-                if (data[j] < data[i]) {
-                    swap(data[j], data[i]);
+                if (data[j] < data[t]) {
+                    this->swap(data[j], data[t]);
                     is_right = false;
+                    t = j;
                 }
                 j--;
             }else{
-                if (data[i] > data[j]) {
-                    swap(data[j], data[i]);
+                if (data[i] > data[t]) {
+                    this->swap(data[t], data[i]);
                     is_right = true;
+                    t = i;
                 }
                 i++;
             }
         }
-        sort(data, i);
-        sort(data + i + 1, n - i - 1);
+        sort(data, t);
+        sort(data + t+1, n - t-1);
     }
 };
 
